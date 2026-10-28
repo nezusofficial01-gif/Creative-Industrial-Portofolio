@@ -94,8 +94,54 @@ dialog h2{font-size:1.7rem}
 dialog h4{font:500 .85rem var(--mono);color:var(--blue);margin:24px 0 4px;padding-bottom:4px;border-bottom:1px solid var(--line)}
 dialog p{margin:6px 0}
 .todo{color:var(--mute);font-style:italic;background:var(--tint);padding:8px 12px;border-left:3px solid var(--mute)}
-@media(max-width:820px){.hero .wrap,.about,.skills{grid-template-columns:1fr}.job{grid-template-columns:1fr;gap:6px}.contact{grid-template-columns:1fr}.contact a:nth-child(odd){border-right:0}section{padding:52px 0}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.photo{margin:0;width:100%;max-width:400px;justify-self:end}
+.pf{position:relative;border:1.5px solid var(--ink);background:var(--tint);aspect-ratio:4/5;overflow:hidden}
+.pf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff}
+.pf .ph{position:absolute;inset:0;height:100%;aspect-ratio:auto;border:0}
+.photo figcaption{background:var(--ink);color:#fff;padding:9px 12px;font:500 .8rem var(--mono);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.photo figcaption span{color:#c9d6e0}
+.mark{display:flex;align-items:center;gap:12px;margin-bottom:14px;font:500 .78rem var(--mono);color:var(--blue)}
+.mark i{display:block;width:0;height:3px;background:var(--blue);transition:width .7s ease}
+.mark.in i{width:56px}
+.deck{border:1.5px solid var(--ink);background:#fff}
+.dbar{display:flex;align-items:center;gap:16px;padding:9px 16px;background:var(--ink);color:#fff;font:500 .8rem var(--mono)}
+.prog{flex:1;height:4px;background:rgba(255,255,255,.25)}
+.prog i{display:block;height:100%;background:#fff;transition:width .5s ease}
+.dnav{display:flex;gap:6px}
+.dnav button{background:none;border:1px solid #fff;color:#fff;width:36px;height:28px;cursor:pointer;font:inherit}
+.dnav button:hover{background:#fff;color:var(--ink)}
+.slide{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:32px;padding:32px 28px 28px;min-height:560px;touch-action:pan-y}
+.slide::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--blue);transform-origin:left}
+.slide.go::before{animation:sweep .7s ease both}
+.slide.go .stext,.slide.go .cols{animation:slin .45s ease both}
+@keyframes sweep{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes slin{from{opacity:0;transform:translateX(var(--d,28px))}to{opacity:1;transform:none}}
+.stext{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.sn{font:700 4.4rem/1 var(--serif);color:var(--line);margin-bottom:-4px}
+.stext h3{font-size:1.75rem}
+.stext h4{font:500 .8rem var(--mono);color:var(--blue);margin:8px 0 0}
+.stext p{margin:0}
+.stext ul{margin:0;padding-left:20px;font-size:.95rem}
+.stext li{margin-bottom:5px}
+.stext .btn{margin-top:auto}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-content:start}
+.cols figure{margin:0}
+.imbox img,.imbox .ph{aspect-ratio:3/5;width:100%;object-fit:cover;display:block}
+.cols .ph{font-size:.64rem;padding:6px;word-break:break-all}
+.cols figcaption{font:400 .72rem var(--mono);color:var(--mute);margin-top:6px}
+.dots{display:flex;gap:8px;justify-content:center;padding:14px;border-top:1px solid var(--line)}
+.dots button{width:28px;height:8px;border:0;background:var(--line);cursor:pointer;padding:0;transition:width .3s,background .3s}
+.dots button[aria-current=true]{background:var(--blue);width:48px}
+.lg{display:inline-flex;width:24px;height:24px;flex:none;align-items:center;justify-content:center}
+.lg svg{width:22px;height:22px}
+.lg b.mono{font:700 .66rem var(--mono);color:#fff;background:var(--blue);width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:3px}
+.skills li{display:flex;align-items:center;gap:10px}
+.contact a{display:flex;align-items:center;gap:16px}
+.contact .lg{width:34px;height:34px}
+.contact .lg svg{width:30px;height:30px}
+@media(max-width:820px){.hero .wrap,.about,.skills{grid-template-columns:1fr}.job{grid-template-columns:1fr;gap:6px}.contact{grid-template-columns:1fr}.contact a:nth-child(odd){border-right:0}section{padding:52px 0}.slide{grid-template-columns:1fr;min-height:0;padding:24px 18px}.sn{font-size:3rem}.photo{justify-self:center;max-width:320px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.slide.go *,.slide.go::before{animation:none!important}.mark i,.prog i,.dots button{transition:none}}
 </style>
 </head>
 <body>
@@ -117,14 +163,7 @@ dialog p{margin:6px 0}
 <a class="btn" href="https://drive.google.com/file/d/1FNogRhrh3VLDQW0hsPABeX9MA3orVOz/view?usp=sharing" target="_blank" rel="noopener">View CV</a>
 <a class="btn" href="#contact">Contact Me</a>
 </div></div>
-<dl class="tb" style="margin:0" aria-label="Ringkasan profil">
-<span class="hd">PROFILE / REV.01</span>
-<div><dt>Nama</dt><dd>Nabil Alfahmi Labib</dd></div>
-<div><dt>Saat ini</dt><dd>Mechanical &amp; Layout Drafter, sejak Juni 2024</dd></div>
-<div><dt>Studi</dt><dd>S1 Industrial Engineering, konsentrasi Manufacturing</dd></div>
-<div><dt>Fokus</dt><dd>Facility Planning, Engineering Design, Continuous Improvement</dd></div>
-<div><dt>Tools</dt><dd>SketchUp, ZW3D, AutoCAD</dd></div>
-</dl></div></section>
+<figure class="photo"><div class="pf"><div class="ph">PLACEHOLDER<br>assets/foto-profil.jpg</div><img src="assets/foto-profil.jpg" alt="Foto Nabil Alfahmi Labib" onerror="this.remove()"></div><figcaption>NABIL ALFAHMI LABIB<span>Mechanical &amp; Layout Drafter</span></figcaption></figure></div></section>
 
 <section id="about"><div class="wrap">
 <h2>About</h2>
@@ -148,7 +187,10 @@ dialog p{margin:6px 0}
 <button data-f="team" aria-pressed="false">Team Project</button>
 <button data-f="academic" aria-pressed="false">Academic Project</button>
 </div>
-<div class="grid" id="grid"></div>
+<div class="deck" id="deck" tabindex="0" role="group" aria-roledescription="carousel" aria-label="Project slides. Gunakan tombol panah kiri dan kanan.">
+<div class="dbar"><span id="sheet">SHEET 01 / 05</span><div class="prog"><i id="pb"></i></div><div class="dnav"><button type="button" id="pv" aria-label="Project sebelumnya">&larr;</button><button type="button" id="nx" aria-label="Project berikutnya">&rarr;</button></div></div>
+<div class="slide" id="slide" aria-live="polite"></div>
+<div class="dots" id="dots"></div></div>
 </div></section>
 
 <section id="experience"><div class="wrap">
@@ -179,19 +221,19 @@ dialog p{margin:6px 0}
 <h2>Skills</h2>
 <p class="sub">Dikelompokkan berdasarkan pengalaman nyata, tanpa persentase kemahiran.</p>
 <div class="skills">
-<div><h3>Engineering Design</h3><ul><li>SketchUp</li><li>ZW3D</li><li>AutoCAD <small>Basic–Intermediate</small></li></ul></div>
+<div><h3>Engineering Design</h3><ul><li><i class="lg" data-i="sketchup"></i>SketchUp</li><li><i class="lg" data-i="zw3d"></i>ZW3D</li><li><i class="lg" data-i="autocad"></i><span>AutoCAD <small>Basic–Intermediate</small></span></li></ul></div>
 <div><h3>Manufacturing &amp; IE</h3><ul><li>Production Layout Design</li><li>Facility Planning</li><li>Workflow Analysis</li><li>Space Utilization</li><li>Equipment &amp; Workplace Design</li><li>Continuous Improvement Support</li><li>Foundational Lean Manufacturing</li><li>Basic Ergonomic Considerations</li></ul></div>
-<div><h3>Data &amp; Productivity</h3><ul><li>Microsoft Office</li><li>Google Sheets</li><li>Looker Studio <small>Basic, pengalaman proyek akademik</small></li></ul></div>
+<div><h3>Data &amp; Productivity</h3><ul><li><i class="lg" data-i="microsoftoffice"></i>Microsoft Office</li><li><i class="lg" data-i="googlesheets"></i>Google Sheets</li><li><i class="lg" data-i="chart"></i><span>Looker Studio <small>Basic, pengalaman proyek akademik</small></span></li></ul></div>
 </div></div></section>
 
 <section id="contact" style="border:0"><div class="wrap">
 <h2>Contact</h2>
 <p class="sub">Terbuka untuk diskusi dan peluang di bidang manufacturing, Industrial Engineering, dan Continuous Improvement.</p>
 <div class="contact">
-<a href="mailto:alfahmilabibnabil@gmail.com"><span>Email</span><b>alfahmilabibnabil@gmail.com</b></a>
-<a href="https://wa.me/6285777324671" target="_blank" rel="noopener"><span>WhatsApp</span><b>085777324671</b></a>
-<a href="https://www.linkedin.com/in/nabil-alfahmi-labib-291751264/" target="_blank" rel="noopener"><span>LinkedIn</span><b>Nabil Alfahmi Labib</b></a>
-<a href="https://drive.google.com/file/d/1FNogRhrh3VLDQW0hsPABeX9MA3orVOz3/view?usp=drive_link" target="_blank" rel="noopener"><span>Curriculum Vitae</span><b>Buka CV (Google Drive)</b></a>
+<a href="mailto:alfahmilabibnabil@gmail.com"><i class="lg" data-i="gmail"></i><div><span>Email</span><b>alfahmilabibnabil@gmail.com</b></div></a>
+<a href="https://wa.me/6285777324671" target="_blank" rel="noopener"><i class="lg" data-i="whatsapp"></i><div><span>WhatsApp</span><b>085777324671</b></div></a>
+<a href="https://www.linkedin.com/in/nabil-alfahmi-labib-291751264/" target="_blank" rel="noopener"><i class="lg" data-i="linkedin"></i><div><span>LinkedIn</span><b>Nabil Alfahmi Labib</b></div></a>
+<a href="https://drive.google.com/file/d/1FNogRhrh3VLDQW0hsPABeX9MA3orVOz/view?usp=sharing" target="_blank" rel="noopener"><i class="lg" data-i="googledrive"></i><div><span>Curriculum Vitae</span><b>Buka CV (Google Drive)</b></div></a>
 </div></div></section>
 </main>
 <footer><div class="wrap">© Nabil Alfahmi Labib. Dokumen proyek ditampilkan setelah disensor dari informasi rahasia perusahaan.</div></footer>
@@ -208,7 +250,7 @@ const P=[
 {no:"01",t:"Production Layout & Facility Planning",cat:"Facility Planning / Manufacturing Engineering",st:"Applied in Workplace",k:"work",
  d:"Perancangan layout area produksi dan dukungan perencanaan relayout serta perluasan fasilitas.",
  r:"Pekerjaan inti saya: layout, drawing teknis, dan visualisasi 3D.",
- img:"assets/01-layout.jpg",
+ img:["assets/01-layout-1.jpg","assets/01-layout-2.jpg","assets/01-layout-3.jpg"],
  s:{"Project Overview":"Perancangan production area layout dan dukungan perencanaan fasilitas, termasuk relayout dan penambahan bangunan.",
  "Background":"Fasilitas produksi membutuhkan layout yang mempertimbangkan kebutuhan proses, penempatan equipment, workflow, space utilization, dan perubahan fasilitas di masa depan.",
  "My Contribution":["Menyusun layout area produksi sesuai kebutuhan manufaktur.","Mendukung relayout produksi dan perencanaan perluasan fasilitas.","Menyiapkan layout drawing teknis dan visualisasi 3D.","Mendukung evaluasi posisi equipment dan susunan area produksi."],
@@ -219,7 +261,7 @@ const P=[
 {no:"04",t:"Manufacturing Equipment & Workplace Design",cat:"Engineering Design / Equipment Support",st:"Applied in Workplace",k:"work",
  d:"Perancangan worktable, machine stand, jig, cabinet, dan peralatan pendukung proses produksi.",
  r:"Merancang, melakukan perhitungan, dan menyiapkan semua drawing fabrikasi; divalidasi sampai equipment siap pakai.",
- img:"assets/04-equipment.jpg",
+ img:["assets/04-equipment-1.jpg","assets/04-equipment-2.jpg","assets/04-equipment-3.jpg"],
  s:{"Project Overview":"Perancangan equipment dan fasilitas kerja yang dibuat oleh workshop fabrikasi in-house, termasuk worktable, machine stand, jig, dan cabinet. Ini adalah pekerjaan equipment secara umum, bukan khusus Karakuri.",
  "Background":"Kebutuhan equipment datang dari improvement proses atau tempat kerja, sehingga desain harus menjawab fungsi yang diminta dan bisa dibuat secara praktis.",
  "My Contribution":["Menerjemahkan kebutuhan proses menjadi desain teknis.","Melakukan riset dan perhitungan, antara lain perkiraan beban dan pemilihan ukuran profil hollow, dimensi berdasarkan ergonomi dasar dan tinggi kerja operator, serta estimasi kapasitas simpan.","Memilih material, profil rangka, dan metode fabrikasi (misalnya las atau rivet nut).","Menyiapkan seluruh drawing untuk workshop fabrikasi in-house dan memvalidasi sampai equipment siap dipakai."],
@@ -230,7 +272,7 @@ const P=[
 {no:"05",t:"Warehouse Material Management & QCC",cat:"Continuous Improvement / Warehouse / Visual Management",st:"Team Project",k:"team",
  d:"Inisiatif QCC untuk inovasi sistem warehouse material management di area manufaktur.",
  r:"Anggota tim: Kanban, identifikasi barcode, 5S, dan desain tangga lipat untuk area sempit.",
- img:"assets/05-warehouse.jpg",
+ img:["assets/05-warehouse-1.jpg","assets/05-warehouse-2.jpg","assets/05-warehouse-3.jpg"],
  s:{"Project Overview":"Inisiatif tim (QCC) untuk memperbaiki sistem pengelolaan material di warehouse area manufaktur. Ini hasil kerja tim, bukan pencapaian individu.",
  "Objective":"Tujuan QCC secara keseluruhan: "+TODO,
  "My Contribution":["Terlibat dalam penerapan Kanban system.","Terlibat dalam identifikasi material dengan barcode khusus dan pelacakan material berbasis sistem.","Terlibat dalam penerapan 5S.","Merancang alat bantu untuk menjangkau lokasi simpan yang tinggi di area terbatas, dengan konsep tangga lipat."],
@@ -241,7 +283,7 @@ const P=[
 {no:"03",t:"Value Stream Mapping & Lead Time Analysis",cat:"Lean Manufacturing / Process Analysis",st:"Team Project",k:"team",
  d:"Analisis proses untuk mengidentifikasi non-value-added activities dan peluang pengurangan lead time.",
  r:"Observasi lapangan, perhitungan lead time, identifikasi waste, dan drawing layout one-piece flow.",
- img:"assets/03-vsm.jpg",
+ img:["assets/03-vsm-1.jpg","assets/03-vsm-2.jpg","assets/03-vsm-3.jpg"],
  s:{"Project Overview":"Proyek tim untuk menganalisis proses manufaktur dengan Value Stream Mapping, mengidentifikasi non-value-added activities, dan mengeksplorasi pengurangan lead time pada satu proses assembly percobaan.",
  "Objective":"Mengurangi lead time dengan menghilangkan waste. One-piece flow dinilai layak untuk proses assembly yang dikaji.",
  "My Contribution":["Ikut observasi lapangan.","Berkontribusi pada perhitungan lead time.","Membantu mengidentifikasi waste dari non-value-added activities.","Menyiapkan drawing layout perubahan mengikuti konsep one-piece flow sebagai solusi."],
@@ -252,7 +294,7 @@ const P=[
 {no:"02",t:"Data Analytics Dashboard Development",cat:"Data Analytics / Business Intelligence",st:"Academic Project",k:"academic",
  d:"Prototipe dashboard dari tugas kuliah Data Analytics: Consumer Analytics dan Marketing Analytics.",
  r:"Menyusun data di Google Sheets dan membuat visualisasi di Looker Studio.",
- img:"assets/02-dashboard.jpg",
+ img:["assets/02-dashboard-1.jpg","assets/02-dashboard-2.jpg","assets/02-dashboard-3.jpg"],
  s:{"Project Overview":"Proyek mata kuliah Data Analytics berupa prototipe dashboard. Ini bukan dashboard produksi pabrik dan tidak memantau output manufaktur.",
  "Background":"Dua perspektif dashboard: Consumer Analytics (profil konsumen, perilaku, preferensi metode pembayaran) dan Marketing Analytics (pemasukan dan pengeluaran per periode, perbandingan revenue vs expenditure). Isi final mengikuti dataset proyek.",
  "My Contribution":["Menyusun dan merapikan data di Google Sheets.","Membuat visualisasi di Looker Studio.","Mengatur informasi dashboard sesuai kebutuhan analisis.","Mengeksplorasi bagaimana data terstruktur dan dashboard dapat mendukung pengambilan keputusan."],
@@ -261,23 +303,38 @@ const P=[
  "Supporting Evidence":null}}
 ];
 const $=s=>document.querySelector(s);
-const ph=f=>{const d=document.createElement("div");d.className="ph";d.textContent="PLACEHOLDER: "+f+" (ganti dengan gambar yang sudah disensor)";return d};
+const ph=f=>{const d=document.createElement("div");d.className="ph";d.innerHTML="PLACEHOLDER<br>"+f;return d};
 const esc=t=>t.replace(/&/g,"&amp;").replace(/</g,"&lt;");
-const g=$("#grid");
-P.forEach((p,i)=>{
- const c=document.createElement("article");c.className="card";c.dataset.k=p.k;
- c.innerHTML=`<div class="top"><span>PROJECT ${p.no}</span><span class="badge ${p.k}">${p.st}</span></div><div class="body"><div class="im"></div><h3>${esc(p.t)}</h3><p class="cat">${esc(p.cat)}</p><p>${esc(p.d)}</p><p class="role"><b>My role:</b> ${esc(p.r)}</p><button class="btn" type="button" data-i="${i}">View details</button></div>`;
- const im=new Image();im.src=p.img;im.alt="Dokumentasi "+p.t;im.loading="lazy";im.onerror=()=>im.replaceWith(ph(p.img));
- c.querySelector(".im").append(im);g.append(c);
-});
+const ICONS={"sketchup":{"p":"M.968 9.027l7.717 4.428-.006 1.32-4.39-2.518-2.763 1.57 7.148 4.12.005 1.27-7.658-4.405c.02.516.488 2.106 1.383 3.337.91 1.247 1.946 1.776 1.946 1.776L11.428 24V11.849L.975 5.846zm22.064-3.8L15.22.723S13.982 0 12.008 0C9.952 0 8.76.746 8.76.746l-7.236 4.14 11.009 6.328V24l7.245-4.136s1.295-.715 2.279-2.414c.867-1.496.975-2.943.975-2.943zM11.251 7.308s1.615-.298 2.98.49l2.171 1.25s.003 1.097.003 2.736c0 1.313-1.112 2.674-1.112 2.674l.002-4.816zm6.402 10.562l-2.358 1.353v-1.269l1.835-1.05c1.748-1.26 2.037-3.117 2.037-3.761l-.007-5.705-5.006-2.881s-.76-.499-2.129-.499c-1.367 0-2.113.461-2.113.461L8.154 5.53l-1.11-.641L9.473 3.5s.95-.527 2.544-.527c1.462 0 2.6.571 2.6.571L20.27 6.81l-.007 6.226c.04.957-.406 3.296-2.61 4.835z","c":"#005F9E"},"autocad":{"p":"M3.8672 1.0527v.0157L0 3.3848v17.914l3.8965-2.332h18.3398V2.3301c0-.702-.5773-1.2774-1.2793-1.2774H3.8672zm7.5058 4.0098h3.3008l2.9844 9.9512h-2.5879l-.5683-2.1895h-2.9844l-.5703 2.1621h-2.416l2.8417-9.9238zm11.8633.0273v14.877H4.172l-2.0684 1.2383v.4648c0 .702.5793 1.2774 1.2813 1.2774H24V5.0898h-.7637zM12.9668 6.6816l-.9941 4.3243h2.0468l-1.0527-4.3243z","c":"#E51050"},"googlesheets":{"p":"M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z","c":"#34A853"},"microsoftoffice":{"p":"M21.53 4.306v15.363q0 .807-.472 1.433-.472.627-1.253.85l-6.888 1.974q-.136.037-.29.055-.156.019-.293.019-.396 0-.72-.105-.321-.106-.656-.292l-4.505-2.544q-.248-.137-.391-.366-.143-.23-.143-.515 0-.434.304-.738.304-.305.739-.305h5.831V4.964l-4.38 1.563q-.533.187-.856.658-.322.472-.322 1.03v8.078q0 .496-.248.912-.25.416-.683.651l-2.072 1.13q-.286.148-.571.148-.497 0-.844-.347-.348-.347-.348-.844V6.563q0-.62.33-1.19.328-.571.874-.881L11.07.285q.248-.136.534-.21.285-.075.57-.075.211 0 .38.031.166.031.364.093l6.888 1.899q.384.11.7.329.317.217.547.52.23.305.353.67.125.367.125.764zm-1.588 15.363V4.306q0-.273-.16-.478-.163-.204-.423-.28l-3.388-.93q-.397-.111-.794-.23-.397-.117-.794-.216v19.68l4.976-1.427q.26-.074.422-.28.161-.204.161-.477z","c":"#D83B01"},"linkedin":{"p":"M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z","c":"#0A66C2"},"whatsapp":{"p":"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z","c":"#25D366"},"gmail":{"p":"M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z","c":"#EA4335"},"googledrive":{"p":"M12.01 1.485c-2.082 0-3.754.02-3.743.047.01.02 1.708 3.001 3.774 6.62l3.76 6.574h3.76c2.081 0 3.753-.02 3.742-.047-.005-.02-1.708-3.001-3.775-6.62l-3.76-6.574zm-4.76 1.73a789.828 789.861 0 0 0-3.63 6.319L0 15.868l1.89 3.298 1.885 3.297 3.62-6.335 3.618-6.33-1.88-3.287C8.1 4.704 7.255 3.22 7.25 3.214zm2.259 12.653-.203.348c-.114.198-.96 1.672-1.88 3.287a423.93 423.948 0 0 1-1.698 2.97c-.01.026 3.24.042 7.222.042h7.244l1.796-3.157c.992-1.734 1.85-3.23 1.906-3.323l.104-.167h-7.249z","c":"#4285F4"}};
+const ico=n=>ICONS[n]?`<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="${ICONS[n].c}" d="${ICONS[n].p}"/></svg>`:n==="zw3d"?'<b class="mono">ZW</b>':n==="chart"?'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#155687" d="M3 12h4v9H3zM10 7h4v14h-4zM17 3h4v18h-4z"/></svg>':"";
+document.querySelectorAll("[data-i]").forEach(e=>e.innerHTML=ico(e.dataset.i));
+const slide=$("#slide"),dots=$("#dots");let cur=[...P],ix=0;
+const li=a=>"<ul>"+a.map(x=>`<li>${esc(x)}</li>`).join("")+"</ul>";
+function paint(d){
+ const p=cur[ix],s=p.s,z=String(cur.length).padStart(2,"0");
+ $("#sheet").textContent="SHEET "+String(ix+1).padStart(2,"0")+" / "+z;
+ $("#pb").style.width=((ix+1)/cur.length*100)+"%";
+ slide.innerHTML=`<div class="stext"><div class="sn">${p.no}</div><span class="badge ${p.k}">${p.st}</span><h3>${esc(p.t)}</h3><p class="cat">${esc(p.cat)}</p><p>${esc(s["Project Overview"])}</p>${p.k==="team"?'<p class="note">Proyek tim. Daftar di bawah adalah kontribusi pribadi saya.</p>':""}<h4>My Contribution</h4>${li(s["My Contribution"])}<p><b>Tools:</b> ${esc(s["Tools & Methods"])}</p><button class="btn" type="button">View details</button></div><div class="cols"></div>`;
+ slide.querySelector(".btn").onclick=()=>openD(p);
+ const cols=slide.querySelector(".cols");
+ p.img.forEach((f,i)=>{const fg=document.createElement("figure");fg.innerHTML=`<div class="imbox"></div><figcaption>Gambar ${i+1}</figcaption>`;
+  const im=new Image();im.src=f;im.alt=p.t+", gambar "+(i+1);im.loading="lazy";im.onerror=()=>im.replaceWith(ph(f));fg.firstChild.append(im);cols.append(fg)});
+ dots.innerHTML=cur.map((q,i)=>`<button type="button" data-n="${i}" aria-label="Project ${q.no}: ${esc(q.t)}" aria-current="${i===ix}"></button>`).join("");
+ slide.style.setProperty("--d",d>=0?"28px":"-28px");
+ slide.classList.remove("go");void slide.offsetWidth;slide.classList.add("go");
+}
+const go=d=>{ix=(ix+d+cur.length)%cur.length;paint(d)};
+$("#pv").onclick=()=>go(-1);$("#nx").onclick=()=>go(1);
+dots.onclick=e=>{const b=e.target.closest("button");if(!b)return;const n=+b.dataset.n,d=n>ix?1:-1;ix=n;paint(d)};
+$("#deck").addEventListener("keydown",e=>{if(e.key==="ArrowRight")go(1);if(e.key==="ArrowLeft")go(-1)});
+let x0=0;slide.addEventListener("pointerdown",e=>x0=e.clientX);
+slide.addEventListener("pointerup",e=>{const dx=e.clientX-x0;if(Math.abs(dx)>60)go(dx<0?1:-1)});
 document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>{
- document.querySelectorAll(".filters button").forEach(x=>x.setAttribute("aria-pressed",x===b));
- g.querySelectorAll(".card").forEach(c=>c.hidden=!(b.dataset.f==="all"||c.dataset.k===b.dataset.f));
+ document.querySelectorAll(".filters button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));
+ cur=P.filter(p=>b.dataset.f==="all"||p.k===b.dataset.f);ix=0;paint(1);
 });
 const dlg=$("#dlg");
-g.addEventListener("click",e=>{
- const b=e.target.closest("button[data-i]");if(!b)return;
- const p=P[b.dataset.i];
+function openD(p){
  $("#dn").textContent="PROJECT "+p.no+" / "+p.st;
  let h=`<h2 id="dt">${esc(p.t)}</h2><p class="cat">${esc(p.cat)}</p>`;
  if(p.k==="team")h+=`<p class="note">Proyek tim. Bagian "My Contribution" menunjukkan kontribusi pribadi saya; hasil lain adalah milik tim.</p>`;
@@ -289,12 +346,15 @@ g.addEventListener("click",e=>{
   else h+=`<p>${esc(v)}</p>`;
  });
  $("#db").innerHTML=h;dlg.showModal();dlg.scrollTop=0;
-});
+}
+paint(1);
 $("#cl").onclick=()=>dlg.close();
 dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
 const links=[...document.querySelectorAll("nav a")];
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle("on",a.hash==="#"+e.target.id))}),{rootMargin:"-40% 0px -55% 0px"});
 document.querySelectorAll("main section").forEach(s=>io.observe(s));
+const mio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("in")}),{threshold:.6});
+document.querySelectorAll("main section").forEach((sec,i)=>{const h=sec.querySelector("h2");if(!h)return;const m=document.createElement("div");m.className="mark";m.innerHTML=`<i></i><span>SECTION ${String(i+1).padStart(2,"0")} — ${h.textContent.toUpperCase()}</span>`;sec.querySelector(".wrap").prepend(m);mio.observe(m)});
 </script>
 </body>
 </html>
