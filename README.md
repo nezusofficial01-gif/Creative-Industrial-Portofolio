@@ -48,7 +48,7 @@ Buka `index.html`, cari `const P=[` di dalam tag `<script>`. Setiap proyek beris
 | `k` | Jenis untuk filter: `work`, `team`, atau `academic` |
 | `d` | Deskripsi singkat di kartu |
 | `r` | Peran singkat di kartu |
-| `img` | Tiga path gambar (tiga kolom di samping slide) |
+| `img` | Tiga path gambar (tersusun ke bawah di samping slide) |
 | `s` | Isi case study (per bagian) |
 
 Pada `s`, bagian yang bernilai `null` akan menampilkan placeholder. Isi dengan teks (string) atau daftar (array) bila datanya sudah ada. Bagian yang tidak ada di `s` tidak akan ditampilkan.
@@ -68,9 +68,9 @@ Semua warna ada di `:root` pada bagian `<style>`: `--blue` (#155687), `--ink`, `
 2. Simpan sebagai `assets/foto-profil.jpg` (atau `.png`, `.jpeg`, `.webp`; semuanya terbaca otomatis). Selama belum ada, tampil placeholder.
 
 **Gambar proyek**
-Format JPG, PNG, JPEG, dan WEBP dibaca otomatis, cukup samakan nama dasarnya. Setiap proyek tampil sebagai satu slide dengan tiga kolom gambar di sisi kanan. Simpan tiga gambar per proyek dengan nama sesuai nilai `img` pada data proyek, misalnya `assets/01-layout-1.jpg`, `-2`, `-3`.
+Format JPG, PNG, JPEG, dan WEBP dibaca otomatis, cukup samakan nama dasarnya. Setiap proyek tampil sebagai satu slide dengan tiga gambar tersusun ke bawah di sisi kanan. Simpan tiga gambar per proyek dengan nama sesuai nilai `img` pada data proyek, misalnya `assets/01-layout-1.jpg`, `-2`, `-3`.
 
-- Tiap kolom berbentuk potret (rasio 3:5). Gambar dipotong otomatis agar pas. Untuk mengubah rasio, edit `aspect-ratio:3/5` pada `.imbox img` di bagian CSS.
+- Tiap gambar memakai bingkai A4 landscape (297:210) dan ditampilkan utuh tanpa dipotong. Ukuran bingkai menyesuaikan tinggi layar agar ketiga gambar muat dalam satu layar (diatur oleh `--ih` pada `.cols`). Klik gambar untuk membuka preview besar; di dalam preview bisa berpindah gambar dengan tombol panah. Untuk mengubah rasio, edit `aspect-ratio:297/210` pada `.imbox img` di bagian CSS. Untuk memotong gambar agar memenuhi bingkai, ganti `object-fit:contain` menjadi `cover`.
 - Teks "Gambar 1/2/3" di bawah kolom bisa diganti di fungsi `paint` pada JavaScript.
 
 ## Navigasi Slide
