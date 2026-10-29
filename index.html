@@ -111,25 +111,32 @@ dialog p{margin:6px 0}
 .dnav{display:flex;gap:6px}
 .dnav button{background:none;border:1px solid #fff;color:#fff;width:36px;height:28px;cursor:pointer;font:inherit}
 .dnav button:hover{background:#fff;color:var(--ink)}
-.slide{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:32px;padding:32px 28px 28px;min-height:560px;touch-action:pan-y}
+.slide{position:relative;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:32px;padding:24px 28px 20px;touch-action:pan-y}
 .slide::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--blue);transform-origin:left}
 .slide.go::before{animation:sweep .7s ease both}
 .slide.go .stext,.slide.go .cols{animation:slin .45s ease both}
 @keyframes sweep{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes slin{from{opacity:0;transform:translateX(var(--d,28px))}to{opacity:1;transform:none}}
-.stext{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.stext{display:flex;flex-direction:column;gap:10px;align-items:flex-start;position:sticky;top:78px;align-self:start}
 .sn{font:700 4.4rem/1 var(--serif);color:var(--line);margin-bottom:-4px}
 .stext h3{font-size:1.75rem}
 .stext h4{font:500 .8rem var(--mono);color:var(--blue);margin:8px 0 0}
 .stext p{margin:0}
 .stext ul{margin:0;padding-left:20px;font-size:.95rem}
 .stext li{margin-bottom:5px}
-.stext .btn{margin-top:auto}
-.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-content:start}
-.cols figure{margin:0}
-.imbox img,.imbox .ph{aspect-ratio:3/5;width:100%;object-fit:cover;display:block}
-.cols .ph{font-size:.64rem;padding:6px;word-break:break-all}
-.cols figcaption{font:400 .72rem var(--mono);color:var(--mute);margin-top:6px}
+.stext .btn{margin-top:8px}
+.cols{--ih:clamp(100px,calc((100vh - 224px)/3),300px);display:grid;grid-template-columns:1fr;gap:12px;align-content:start;justify-items:center}
+.cols figure{margin:0;width:100%;display:flex;justify-content:center}
+.imbox{position:relative;height:var(--ih);aspect-ratio:297/210;max-width:100%}
+.imbox img,.imbox .ph{width:100%;height:100%;aspect-ratio:auto;display:block;object-fit:contain}
+.imbox img{background:#fff;border:1px solid var(--line)}
+.imbox.zoom{cursor:zoom-in}.imbox.zoom:hover img{border-color:var(--blue)}
+.cap{position:absolute;left:0;bottom:0;z-index:1;background:rgba(255,255,255,.92);font:400 .7rem var(--mono);color:var(--mute);padding:2px 8px;border:1px solid var(--line);border-left:0;border-bottom:0;pointer-events:none}
+#lb{width:min(1100px,96vw)}.lbb{display:flex;gap:6px}
+.lbf{margin:0;padding:14px;background:#fff;text-align:center}
+#lbi{width:auto;max-width:100%;max-height:76vh;aspect-ratio:auto;object-fit:contain;display:inline-block;border:0}
+#lbt{font:400 .8rem var(--mono);color:var(--mute);margin-top:8px}
+.cols .ph{font-size:.8rem}
 .dots{display:flex;gap:8px;justify-content:center;padding:14px;border-top:1px solid var(--line)}
 .dots button{width:28px;height:8px;border:0;background:var(--line);cursor:pointer;padding:0;transition:width .3s,background .3s}
 .dots button[aria-current=true]{background:var(--blue);width:48px}
@@ -140,7 +147,7 @@ dialog p{margin:6px 0}
 .contact a{display:flex;align-items:center;gap:16px}
 .contact .lg{width:34px;height:34px}
 .contact .lg svg{width:30px;height:30px}
-@media(max-width:820px){.hero .wrap,.about,.skills{grid-template-columns:1fr}.job{grid-template-columns:1fr;gap:6px}.contact{grid-template-columns:1fr}.contact a:nth-child(odd){border-right:0}section{padding:52px 0}.slide{grid-template-columns:1fr;min-height:0;padding:24px 18px}.sn{font-size:3rem}.photo{justify-self:center;max-width:320px}}
+@media(max-width:820px){.hero .wrap,.about,.skills{grid-template-columns:1fr}.job{grid-template-columns:1fr;gap:6px}.contact{grid-template-columns:1fr}.contact a:nth-child(odd){border-right:0}section{padding:52px 0}.slide{grid-template-columns:1fr;min-height:0;padding:24px 18px}.sn{font-size:3rem}.stext{position:static}.imbox{height:auto;width:100%}.cols{justify-items:stretch}.photo{justify-self:center;max-width:320px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.slide.go *,.slide.go::before{animation:none!important}.mark i,.prog i,.dots button{transition:none}}
 </style>
 </head>
@@ -239,6 +246,7 @@ dialog p{margin:6px 0}
 <footer><div class="wrap">© Nabil Alfahmi Labib. Dokumen proyek ditampilkan setelah disensor dari informasi rahasia perusahaan.</div></footer>
 
 <dialog id="dlg" aria-labelledby="dt"><div class="bar"><span id="dn"></span><button type="button" id="cl">Close</button></div><div class="in" id="db"></div></dialog>
+<dialog id="lb" aria-label="Preview gambar"><div class="bar"><span id="lbn"></span><div class="lbb"><button type="button" id="lbp" aria-label="Gambar sebelumnya">&larr;</button><button type="button" id="lbx" aria-label="Gambar berikutnya">&rarr;</button><button type="button" id="lbc">Close</button></div></div><figure class="lbf"><img id="lbi" alt=""><figcaption id="lbt"></figcaption></figure></dialog>
 
 <script>
 /* ===== DATA PROYEK — edit teks di sini =====
@@ -309,7 +317,7 @@ const ICONS={"sketchup":{"p":"M.968 9.027l7.717 4.428-.006 1.32-4.39-2.518-2.763
 const ico=n=>ICONS[n]?`<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="${ICONS[n].c}" d="${ICONS[n].p}"/></svg>`:n==="zw3d"?'<b class="mono">ZW</b>':n==="chart"?'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#155687" d="M3 12h4v9H3zM10 7h4v14h-4zM17 3h4v18h-4z"/></svg>':"";
 document.querySelectorAll("[data-i]").forEach(e=>e.innerHTML=ico(e.dataset.i));
 /* Mencoba .jpg, .png, .jpeg, .webp secara otomatis */
-function tryImg(path,alt,fail){const b=path.replace(/\.\w+$/,""),x=["jpg","png","jpeg","webp"];let k=0;const im=new Image();im.alt=alt;im.onerror=()=>{k++;k<x.length?im.src=b+"."+x[k]:im.replaceWith(fail())};im.src=b+"."+x[0];return im}
+function tryImg(path,alt,fail){const b=path.replace(/\.\w+$/,""),x=["jpg","png","jpeg","webp"];let k=0;const im=new Image();im.alt=alt;im.onload=()=>{const b=im.parentNode;if(b&&b.classList&&b.classList.contains("imbox")){b.classList.add("zoom");b.tabIndex=0;b.setAttribute("role","button");b.setAttribute("aria-label","Perbesar: "+alt)}};im.onerror=()=>{k++;k<x.length?im.src=b+"."+x[k]:im.replaceWith(fail())};im.src=b+"."+x[0];return im}
 document.querySelector(".pf").append(tryImg("assets/foto-profil.jpg","Foto Nabil Alfahmi Labib",()=>document.createComment("")));
 const slide=$("#slide"),dots=$("#dots");let cur=[...P],ix=0;
 const li=a=>"<ul>"+a.map(x=>`<li>${esc(x)}</li>`).join("")+"</ul>";
@@ -320,8 +328,8 @@ function paint(d){
  slide.innerHTML=`<div class="stext"><div class="sn">${p.no}</div><span class="badge ${p.k}">${p.st}</span><h3>${esc(p.t)}</h3><p class="cat">${esc(p.cat)}</p><p>${esc(s["Project Overview"])}</p>${p.k==="team"?'<p class="note">Proyek tim. Daftar di bawah adalah kontribusi pribadi saya.</p>':""}<h4>My Contribution</h4>${li(s["My Contribution"])}<p><b>Tools:</b> ${esc(s["Tools & Methods"])}</p><button class="btn" type="button">View details</button></div><div class="cols"></div>`;
  slide.querySelector(".btn").onclick=()=>openD(p);
  const cols=slide.querySelector(".cols");
- p.img.forEach((f,i)=>{const fg=document.createElement("figure");fg.innerHTML=`<div class="imbox"></div><figcaption>Gambar ${i+1}</figcaption>`;
-  fg.firstChild.append(tryImg(f,p.t+", gambar "+(i+1),()=>ph(f)));cols.append(fg)});
+ p.img.forEach((f,i)=>{const fg=document.createElement("figure");fg.innerHTML=`<div class="imbox"><span class="cap">Gambar ${i+1}</span></div>`;
+  fg.firstChild.prepend(tryImg(f,p.t+", gambar "+(i+1),()=>ph(f)));cols.append(fg)});
  dots.innerHTML=cur.map((q,i)=>`<button type="button" data-n="${i}" aria-label="Project ${q.no}: ${esc(q.t)}" aria-current="${i===ix}"></button>`).join("");
  slide.style.setProperty("--d",d>=0?"28px":"-28px");
  slide.classList.remove("go");void slide.offsetWidth;slide.classList.add("go");
@@ -350,6 +358,16 @@ function openD(p){
  });
  $("#db").innerHTML=h;dlg.showModal();dlg.scrollTop=0;
 }
+/* Preview gambar */
+const lb=$("#lb");let lbL=[],lbI=0;
+const lbShow=()=>{const o=lbL[lbI];$("#lbi").src=o.src;$("#lbi").alt=o.alt;$("#lbt").textContent=o.alt;$("#lbn").textContent="GAMBAR "+(lbI+1)+" / "+lbL.length};
+const lbGo=d=>{lbI=(lbI+d+lbL.length)%lbL.length;lbShow()};
+slide.addEventListener("click",e=>{const b=e.target.closest(".imbox.zoom");if(!b)return;
+ const all=[...slide.querySelectorAll(".imbox.zoom")];lbL=all.map(x=>({src:x.querySelector("img").src,alt:x.querySelector("img").alt}));lbI=all.indexOf(b);lbShow();lb.showModal()});
+slide.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.classList.contains("zoom")){e.preventDefault();e.target.click()}});
+$("#lbp").onclick=()=>lbGo(-1);$("#lbx").onclick=()=>lbGo(1);$("#lbc").onclick=()=>lb.close();
+lb.addEventListener("keydown",e=>{if(e.key==="ArrowRight")lbGo(1);if(e.key==="ArrowLeft")lbGo(-1)});
+lb.addEventListener("click",e=>{if(e.target===lb)lb.close()});
 paint(1);
 $("#cl").onclick=()=>dlg.close();
 dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
